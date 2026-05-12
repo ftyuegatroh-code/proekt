@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">
+            <i class="fas fa-check-circle text-primary"></i> TaskNote
+        </h1>
+        <p class="lead">Простой и удобный менеджер задач с заметками и файлами</p>
+        <hr class="my-4">
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <i class="fas fa-plus-circle fa-3x text-primary"></i>
+                <h5 class="mt-2">Создавайте задачи</h5>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-paperclip fa-3x text-success"></i>
+                <h5 class="mt-2">Прикрепляйте файлы</h5>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-chart-line fa-3x text-info"></i>
+                <h5 class="mt-2">Отслеживайте прогресс</h5>
+            </div>
+        </div>
+        <div class="mt-5">
+            {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-user-plus"></i> Начать
+                </a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg">
+                    <i class="fas fa-sign-in-alt"></i> Войти
+                </a>
+            {% else %}
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-list"></i> Перейти к задачам
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
